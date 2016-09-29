@@ -18,15 +18,7 @@ local JaxMenu = Menu("JaxNation", "JaxNation")
   JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
 
 OnTick(function()
-
-    if IOW:Mode() == "Combo" then
-       
-        local target = GetCurrentTarget() 
-               
-    if IOW:Mode() == "Combo" then
-        local target = GetCurrentTarget()
-
-  
+      
         if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_E) 
         end
