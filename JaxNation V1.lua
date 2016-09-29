@@ -1,7 +1,5 @@
 if GetObjectName(myHero) ~= "Jax" then return end
 
-require('OpenPredict')
-
 print("JaxNation // By:Vikk")
 
 local JaxMenu = Menu("JaxNation", "JaxNation")
