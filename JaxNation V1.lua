@@ -16,6 +16,7 @@ local JaxMenu = Menu("JaxNation", "JaxNation")
   JaxMenu.Combo:Boolean("useTitanic", "Use Titanic Hydra", true)
   JaxMenu.Combo:Boolean("useBOTRK", "Use BladeOfTheRuinedKing", true)
   JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
+  JaxMenu.Combo:Boolean("useGun", "Use Hextech Gunblade", true)
 
 OnTick(function()
   
@@ -49,6 +50,9 @@ OnTick(function()
       end
     if GetItemSlot(myHero, 3142) > 0 and IsReady(GetItemSlot(myHero, 3142)) and JaxMenu.Combo.useYoum:Value() then
        CastSpell(GetItemSlot(myHero, 3142))
+      end
+    if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useBOTRK:Value() then
+       CastTargetSpell(target, GetItemSlot(myHero, 3146))
       end 
     end
 end)
