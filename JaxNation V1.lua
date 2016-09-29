@@ -19,52 +19,55 @@ JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
 JaxMenu.Combo:Boolean("useGun", "Use Hextech Gunblade", true)
 
 --Spells
-local JaxQ = { range = 700 }
+local JaxQ = { range = 700}
 
-OnTick(function()
+--Start
+OnTick(function(myHero)
+    if not IsDead(myHero) then
+        local target = GetCurrentTarget()
 
-    local target = GetCurrentTarget()
-
-    if IOW:Mode() == "Combo" then
-        --Q
-        if ValidTarget(target, JaxQ.range) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
-          CastTargetSpell(target,_Q)
+        --Combo
+        if IOW:Mode() == "Combo" then
+            --E
+            if JaxMenu.Combo.useE:Value() and Ready(_E) and ValidTarget(target, GetRange(myHero) + GetHitBox(target)) then
+                CastSpell(_E)
+            end
+            --Q
+            if JaxMenu.Combo.useQ:Value() and Ready(_Q) and ValidTarget(target, JaxQ.range) then
+                CastTargetSpell(target,_Q)
+            end
+            --W
+            if JaxMenu.Combo.useW:Value() and Ready(_W) and ValidTarget(target, GetRange(myHero)) then
+                CastSpell(_W)
+            end
+            --R
+            if JaxMenu.Combo.useR:Value() and Ready(_R) and EnemiesAround(myHero, 600) >= 1 then
+                CastSpell(_R)
+            end
+            if GetItemSlot(myHero, 3077) > 0 and IsReady(GetItemSlot(myHero, 3077)) and JaxMenu.Combo.useTiamat:Value() then
+                CastSpell(GetItemSlot(myHero, 3077))
+            end
+            if GetItemSlot(myHero, 3074) > 0 and IsReady(GetItemSlot(myHero, 3074)) and JaxMenu.Combo.useHydra:Value() then
+                CastSpell(GetItemSlot(myHero, 3074))
+            end
+            if GetItemSlot(myHero, 3748) > 0 and IsReady(GetItemSlot(myHero, 3748)) and JaxMenu.Combo.useTitanic:Value() then
+                CastSpell(GetItemSlot(myHero, 3748))
+            end
+            if GetItemSlot(myHero, 3153) > 0 and IsReady(GetItemSlot(myHero, 3153)) and JaxMenu.Combo.useBOTRK:Value() then
+                CastTargetSpell(target, GetItemSlot(myHero, 3153))
+            end
+            if GetItemSlot(myHero, 3142) > 0 and IsReady(GetItemSlot(myHero, 3142)) and JaxMenu.Combo.useYoum:Value() then
+                CastSpell(GetItemSlot(myHero, 3142))
+           end
+            if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useGun:Value() then
+                CastTargetSpell(target, GetItemSlot(myHero, 3146))
+           end 
         end
-        --W
-        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_W) == READY and JaxMenu.Combo.useW:Value() then
-          CastSpell(_W)
-        end
-        --E
-        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
-          CastSpell(_E) 
-        end
-        --R
-        if ValidTarget(GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_R) == READY and JaxMenu.Combo.useR:Value() then
-          CastSpell(_R)
-        end
-         if GetItemSlot(myHero, 3077) > 0 and IsReady(GetItemSlot(myHero, 3077)) and JaxMenu.Combo.useTiamat:Value() then
-       CastSpell(GetItemSlot(myHero, 3077))
-      end
-    if GetItemSlot(myHero, 3074) > 0 and IsReady(GetItemSlot(myHero, 3074)) and JaxMenu.Combo.useHydra:Value() then
-       CastSpell(GetItemSlot(myHero, 3074))
-      end
-    if GetItemSlot(myHero, 3748) > 0 and IsReady(GetItemSlot(myHero, 3748)) and JaxMenu.Combo.useTitanic:Value() then
-       CastSpell(GetItemSlot(myHero, 3748))
-      end
-    if GetItemSlot(myHero, 3153) > 0 and IsReady(GetItemSlot(myHero, 3153)) and JaxMenu.Combo.useBOTRK:Value() then
-       CastTargetSpell(target, GetItemSlot(myHero, 3153))
-      end
-    if GetItemSlot(myHero, 3142) > 0 and IsReady(GetItemSlot(myHero, 3142)) and JaxMenu.Combo.useYoum:Value() then
-       CastSpell(GetItemSlot(myHero, 3142))
-      end
-    if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useGun:Value() then
-       CastTargetSpell(target, GetItemSlot(myHero, 3146))
-      end 
     end
 end)
-  
+
 JaxMenu:SubMenu("SkinChanger", "SkinChanger")
 
 local skinMeta = {["Jax"] = {"Classic", "The Mighty", "Vandal", "Angler", "PAX", "Jaximus", "Temple", "Nemesis", "SKT T1", "Chroma1", "Chroma2", "Chroma3", "Warden"}},
 JaxMenu.SkinChanger:DropDown('skin', myHero.charName.. " Skins", 1, skinMeta[myHero.charName], HeroSkinChanger, true)
-JaxrMenu.SkinChanger.skin.callback = function(model) HeroSkinChanger(myHero, model - 1) print(skinMeta[myHero.charName][model] .." ".. myHero.charName .. " Loaded!") end
+JaxMenu.SkinChanger.skin.callback = function(model) HeroSkinChanger(myHero, model - 1) print(skinMeta[myHero.charName][model] .." ".. myHero.charName .. " Loaded!") end
