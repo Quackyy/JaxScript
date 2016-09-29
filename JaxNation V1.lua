@@ -24,15 +24,15 @@ OnTick(function()
         end
         
         if ValidTarget(target,GetRange(myHero) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
-          CastTargetSpell(target, _Q)
+          CastTargetSpell(target,_Q)
         end
         
         if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_W) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_W)
         end
         
-        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_R) == READY and JaxMenu.Combo.useR:Value() then
-          CastTargetSpell(target,_R)
+        if ValidTarget(GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_R) == READY and JaxMenu.Combo.useR:Value() then
+          CastSpell(_R)
         end
 
          if GetItemSlot(myHero, 3077) > 0 and IsReady(GetItemSlot(myHero, 3077)) and JaxMenu.Combo.useTiamat:Value() then
