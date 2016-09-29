@@ -20,15 +20,15 @@ local JaxMenu = Menu("JaxNation", "JaxNation")
 
 OnTick(function()
   
-        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
+        if ValidTarget(target,GetRange(myHero)) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_E) 
         end
         
-        if ValidTarget(target,GetRange(myHero) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
+        if ValidTarget(target,GetRange(myHero)) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
           CastTargetSpell(target,_Q)
         end
         
-        if ValidTarget(target,GetRange(myHero)) + GetHitBox(target)) and CanUseSpell(myHero,_W) == READY and JaxMenu.Combo.useE:Value() then
+        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_W) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_W)
         end
         
