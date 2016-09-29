@@ -35,7 +35,7 @@ OnTick(function()
           CastSpell(_W)
         end
         --E
-        if ValidTarget(target,GetRange(myHero)) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
+        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_E) 
         end
         --R
