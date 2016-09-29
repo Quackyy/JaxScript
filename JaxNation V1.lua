@@ -66,8 +66,9 @@ OnTick(function(myHero)
     end
 end)
 
-JaxMenu:SubMenu("SkinChanger", "SkinChanger")
-
-local skinMeta = {["Jax"] = {"Classic", "The Mighty", "Vandal", "Angler", "PAX", "Jaximus", "Temple", "Nemesis", "SKT T1", "Chroma1", "Chroma2", "Chroma3", "Warden"}},
-JaxMenu.SkinChanger:DropDown('skin', myHero.charName.. " Skins", 1, skinMeta[myHero.charName], HeroSkinChanger, true)
-JaxMenu.SkinChanger.skin.callback = function(model) HeroSkinChanger(myHero, model - 1) print(skinMeta[myHero.charName][model] .." ".. myHero.charName .. " Loaded!") end
+JaxMenu:SubMenu("s", "Skin Changer")
+  skinMeta = {["Jax"] = {"Classic", "The Mighty", "Vandal", "Angler", "PAX", "Jaximus", "Temple", "Nemesis", "SKT T1", "Chroma1", "Chroma2", "Chroma3", "Warden"}}
+  JaxMenu.s:DropDown('skin', myHero.charName.. " Skins", 1, skinMeta[myHero.charName],function(model)
+        HeroSkinChanger(myHero, model - 1) print(skinMeta[myHero.charName][model] .." ".. myHero.charName .. " Loaded!") 
+    end,
+true)
