@@ -51,7 +51,7 @@ OnTick(function()
     if GetItemSlot(myHero, 3142) > 0 and IsReady(GetItemSlot(myHero, 3142)) and JaxMenu.Combo.useYoum:Value() then
        CastSpell(GetItemSlot(myHero, 3142))
       end
-    if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useBOTRK:Value() then
+    if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useGun:Value() then
        CastTargetSpell(target, GetItemSlot(myHero, 3146))
       end 
     end
