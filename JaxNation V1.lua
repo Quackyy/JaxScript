@@ -44,6 +44,9 @@ OnTick(function(myHero)
             if JaxMenu.Combo.useR:Value() and Ready(_R) and EnemiesAround(myHero, 600) >= 1 then
                 CastSpell(_R)
             end
+            if GetItemSlot(myHero, 3142) > 0 and IsReady(GetItemSlot(myHero, 3142)) and JaxMenu.Combo.useYoum:Value() then
+                CastSpell(GetItemSlot(myHero, 3142))
+            end   
             if GetItemSlot(myHero, 3077) > 0 and IsReady(GetItemSlot(myHero, 3077)) and JaxMenu.Combo.useTiamat:Value() then
                 CastSpell(GetItemSlot(myHero, 3077))
             end
@@ -55,10 +58,7 @@ OnTick(function(myHero)
             end
             if GetItemSlot(myHero, 3153) > 0 and IsReady(GetItemSlot(myHero, 3153)) and JaxMenu.Combo.useBOTRK:Value() then
                 CastTargetSpell(target, GetItemSlot(myHero, 3153))
-            end
-            if GetItemSlot(myHero, 3142) > 0 and IsReady(GetItemSlot(myHero, 3142)) and JaxMenu.Combo.useYoum:Value() then
-                CastSpell(GetItemSlot(myHero, 3142))
-           end
+            end            
             if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useGun:Value() then
                 CastTargetSpell(target, GetItemSlot(myHero, 3146))
            end 
