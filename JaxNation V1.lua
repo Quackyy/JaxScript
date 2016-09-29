@@ -1,39 +1,47 @@
 if GetObjectName(myHero) ~= "Jax" then return end
 
+require('OpenPredict')
+
 print("JaxNation // By:Vikk")
 
 local JaxMenu = Menu("JaxNation", "JaxNation")
 
-  JaxMenu:Menu("Combo", "Combo")
-  JaxMenu.Combo:Boolean("useQ", "Use Q", true)
-  JaxMenu.Combo:Boolean("useW", "Use W", true)
-  JaxMenu.Combo:Boolean("useE", "Use E", true)
-  JaxMenu.Combo:Boolean("useR", "Use R", true)
-  JaxMenu.Combo:Boolean("useTiamat", "Use Tiamat", true)
-  JaxMenu.Combo:Boolean("useHydra", "Use Ravenous Hydra", true)
-  JaxMenu.Combo:Boolean("useTitanic", "Use Titanic Hydra", true)
-  JaxMenu.Combo:Boolean("useBOTRK", "Use BladeOfTheRuinedKing", true)
-  JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
-  JaxMenu.Combo:Boolean("useGun", "Use Hextech Gunblade", true)
+JaxMenu:Menu("Combo", "Combo")
+JaxMenu.Combo:Boolean("useQ", "Use Q", true)
+JaxMenu.Combo:Boolean("useW", "Use W", true)
+JaxMenu.Combo:Boolean("useE", "Use E", true)
+JaxMenu.Combo:Boolean("useR", "Use R", true)
+JaxMenu.Combo:Boolean("useTiamat", "Use Tiamat", true)
+JaxMenu.Combo:Boolean("useHydra", "Use Ravenous Hydra", true)
+JaxMenu.Combo:Boolean("useTitanic", "Use Titanic Hydra", true)
+JaxMenu.Combo:Boolean("useBOTRK", "Use BladeOfTheRuinedKing", true)
+JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
+JaxMenu.Combo:Boolean("useGun", "Use Hextech Gunblade", true)
+
+--Spells
+local JaxQ = { range = 700 }
 
 OnTick(function()
-  
+
+    local target = GetCurrentTarget()
+
+    if IOW:Mode() == "Combo" then
+        --Q
+        if ValidTarget(target, JaxQ.range) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
+          CastTargetSpell(target,_Q)
+        end
+        --W
+        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_W) == READY and JaxMenu.Combo.useW:Value() then
+          CastSpell(_W)
+        end
+        --E
         if ValidTarget(target,GetRange(myHero)) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_E) 
         end
-        
-        if ValidTarget(target,GetRange(myHero)) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
-          CastTargetSpell(target,_Q)
-        end
-        
-        if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_W) == READY and JaxMenu.Combo.useE:Value() then
-          CastSpell(_W)
-        end
-        
+        --R
         if ValidTarget(GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_R) == READY and JaxMenu.Combo.useR:Value() then
           CastSpell(_R)
         end
-
          if GetItemSlot(myHero, 3077) > 0 and IsReady(GetItemSlot(myHero, 3077)) and JaxMenu.Combo.useTiamat:Value() then
        CastSpell(GetItemSlot(myHero, 3077))
       end
