@@ -18,12 +18,12 @@ local JaxMenu = Menu("JaxNation", "JaxNation")
   JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
 
 OnTick(function()
-      
+  
         if ValidTarget(target,GetRange(myHero) + GetHitBox(target)) and CanUseSpell(myHero,_E) == READY and JaxMenu.Combo.useE:Value() then
           CastSpell(_E) 
         end
         
-        if ValidTarget(target,JaxQ.range) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
+        if ValidTarget(target,GetRange(myHero) and CanUseSpell(myHero,_Q) == READY and JaxMenu.Combo.useQ:Value() then
           CastTargetSpell(target, _Q)
         end
         
