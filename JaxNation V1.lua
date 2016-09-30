@@ -15,6 +15,7 @@ JaxMenu.Combo:Boolean("useTiamat", "Use Tiamat", true)
 JaxMenu.Combo:Boolean("useHydra", "Use Ravenous Hydra", true)
 JaxMenu.Combo:Boolean("useTitanic", "Use Titanic Hydra", true)
 JaxMenu.Combo:Boolean("useBOTRK", "Use BladeOfTheRuinedKing", true)
+JaxMenu.Combo:Boolean("useCut", "Use Bilgewater Cutlass", true)  
 JaxMenu.Combo:Boolean("useYoum", "Use Youmuu's Ghostblade", true)
 JaxMenu.Combo:Boolean("useGun", "Use Hextech Gunblade", true)
 
@@ -61,7 +62,10 @@ OnTick(function(myHero)
             end            
             if GetItemSlot(myHero, 3146) > 0 and IsReady(GetItemSlot(myHero, 3146)) and JaxMenu.Combo.useGun:Value() then
                 CastTargetSpell(target, GetItemSlot(myHero, 3146))
-           end 
+            end
+            if GetItemSlot(myHero, 3144) > 0 and IsReady(GetItemSlot(myHero, 3144)) and SkarnerMenu.Combo.useCut:Value() then
+                CastTargetSpell(target, GetItemSlot(myHero, 3144)) 
+            end 
         end
     end
 end)
